@@ -1,0 +1,4 @@
+[
+ {"op":"init","max_new":16},
+ {"op":"run","label":"r1","kh":0,"prompt":"What is the capital of France? Answer in one word."}
+]

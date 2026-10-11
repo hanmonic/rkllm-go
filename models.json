@@ -1,0 +1,35 @@
+{
+  "default": "qwen3-1.7b",
+  "preload": ["qwen3-1.7b"],
+  "strategies": {
+    "qwen3": "prefix",
+    "qwen3.5": "snapshot",
+    "gemma3": "prefix"
+  },
+  "models": {
+    "qwen3-0.6b":      {"path": "/opt/rkllm/models/qwen3-0.6b/model.rkllm",      "family": "qwen3", "strategy": "prefix",   "max_context_len": 16384, "mem_mb": 2700},
+    "qwen3-1.7b":      {"path": "/opt/rkllm/models/qwen3-1.7b/model.rkllm",      "family": "qwen3", "strategy": "prefix",   "max_context_len": 16384, "mem_mb": 3800},
+    "qwen3-4b-16k":    {"path": "/opt/rkllm/models/qwen3-4b-16k/model.rkllm",    "family": "qwen3", "strategy": "prefix",   "max_context_len": 16384, "mem_mb": 6800},
+    "qwen3-8b-allnpu": {"path": "/opt/rkllm/models/qwen3-8b-allnpu/model.rkllm", "family": "qwen3", "strategy": "prefix",   "max_context_len": 16384, "mem_mb": 10300},
+    "q35-2b":          {"path": "/opt/rkllm/models/q35-2b/model.rkllm",          "family": "qwen3.5", "strategy": "snapshot", "max_context_len": 16384, "mem_mb": 2500},
+    "q35-4b":          {"path": "/opt/rkllm/models/q35-4b/model.rkllm",          "family": "qwen3.5", "strategy": "snapshot", "max_context_len": 16384, "mem_mb": 5400},
+    "q35-9b":          {"path": "/opt/rkllm/models/q35-9b/model.rkllm",          "family": "qwen3.5", "strategy": "snapshot", "max_context_len": 16384, "mem_mb": 9600},
+    "gemma3n-e4b":     {"path": "/opt/rkllm/models/gemma3n-e4b/model.rkllm",     "family": "gemma3", "strategy": "prefix",  "max_context_len": 16384, "mem_mb": 5900},
+
+    "qwen3-4b":         "/opt/rkllm/models/qwen3-4b/model.rkllm",
+    "qwen3-4b-online":  "/opt/rkllm/models/qwen3-4b-online/model.rkllm",
+    "qwen3-8b-online":  "/opt/rkllm/models/qwen3-8b-online/model.rkllm",
+    "qwen3-14b-online": "/opt/rkllm/models/qwen3-14b-online/model.rkllm",
+    "deepseek-r1-1.5b": "/opt/rkllm/models/deepseek-r1-1.5b/model.rkllm",
+    "deepseek-r1-7b":   "/opt/rkllm/models/deepseek-r1-7b/model.rkllm",
+    "llama3.2-1b":      "/opt/rkllm/models/llama3.2-1b/model.rkllm",
+    "llama3.2-3b":      "/opt/rkllm/models/llama3.2-3b/model.rkllm",
+    "gemma3-1b":        "/opt/rkllm/models/gemma3-1b/model.rkllm",
+    "gemma3-4b":        "/opt/rkllm/models/gemma3-4b/model.rkllm"
+  },
+  "families": {
+    "qwen3-4b":         "qwen3",
+    "gemma3-1b":        "gemma3",
+    "gemma3-4b":        "gemma3"
+  }
+}

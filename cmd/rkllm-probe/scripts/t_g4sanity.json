@@ -1,0 +1,11 @@
+[
+ {"op":"init","max_new":24},
+ {"op":"template","sys":"","pre":"","post":""},
+ {"op":"run","label":"completion","kh":0,"prompt":"The capital of France is"},
+ {"op":"clear","keep":0},
+ {"op":"run","label":"g3fmt","kh":0,"prompt":"<start_of_turn>user\nWhat is the capital of France? Answer in one word.<end_of_turn>\n<start_of_turn>model\n"},
+ {"op":"clear","keep":0},
+ {"op":"run","label":"g4fmt_think","kh":0,"prompt":"<|turn>system\n<|think|>\n<turn|>\n<|turn>user\nWhat is the capital of France? Answer in one word.<turn|>\n<|turn>model\n","max_new":60},
+ {"op":"clear","keep":0},
+ {"op":"run","label":"g4_longer","kh":0,"prompt":"<|turn>user\nI am planning a trip to Europe next summer. What is the capital of France? Answer in one word.<turn|>\n<|turn>model\n"}
+]

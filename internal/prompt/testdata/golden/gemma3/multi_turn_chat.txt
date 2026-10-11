@@ -1,0 +1,9 @@
+<bos><start_of_turn>user
+Be brief.
+
+Name a colour.<end_of_turn>
+<start_of_turn>model
+Blue.<end_of_turn>
+<start_of_turn>user
+Another one.<end_of_turn>
+<start_of_turn>model

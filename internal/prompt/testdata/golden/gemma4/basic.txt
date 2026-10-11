@@ -1,0 +1,5 @@
+<bos><|turn>system
+You are a helpful assistant.<turn|>
+<|turn>user
+What is 12 times 12?<turn|>
+<|turn>model

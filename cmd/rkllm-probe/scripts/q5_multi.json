@@ -1,0 +1,118 @@
+[
+ {
+  "op": "rss"
+ },
+ {
+  "op": "init",
+  "h": "A",
+  "max_new": 16
+ },
+ {
+  "op": "init",
+  "h": "B",
+  "max_new": 16
+ },
+ {
+  "op": "template",
+  "h": "A",
+  "sys": "",
+  "pre": "",
+  "post": ""
+ },
+ {
+  "op": "template",
+  "h": "B",
+  "sys": "",
+  "pre": "",
+  "post": ""
+ },
+ {
+  "op": "run",
+  "h": "A",
+  "label": "a1",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Reference data follows. {{FILLER:25}}}}{{U:What is the secret code? Answer with the code only.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "h": "B",
+  "label": "b1",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant. The secret code is MANGO-7. Reference data follows. {{FILLER:25:5}}}}{{U:What is the secret code? Answer with the code only.}}{{A}}"
+ },
+ {
+  "op": "rss"
+ },
+ {
+  "op": "run",
+  "h": "A",
+  "label": "a2",
+  "kh": 0,
+  "note": "A again, same prefix, new question: prefill should be small if A's cache is independent",
+  "prompt": "{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Reference data follows. {{FILLER:25}}}}{{U:Repeat the secret code twice.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "h": "B",
+  "label": "b2",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant. The secret code is MANGO-7. Reference data follows. {{FILLER:25:5}}}}{{U:Repeat the secret code twice.}}{{A}}"
+ },
+ {
+  "op": "kv",
+  "h": "A"
+ },
+ {
+  "op": "kv",
+  "h": "B"
+ },
+ {
+  "op": "note",
+  "note": "kh=1 independence"
+ },
+ {
+  "op": "clear",
+  "h": "A",
+  "keep": 0
+ },
+ {
+  "op": "clear",
+  "h": "B",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "h": "A",
+  "label": "a3",
+  "kh": 1,
+  "prompt": "{{U:My name is Zorblax. Reply OK.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "h": "B",
+  "label": "b3",
+  "kh": 1,
+  "prompt": "{{U:My name is Quux. Reply OK.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "h": "A",
+  "label": "a4",
+  "kh": 1,
+  "prompt": "{{END}}{{U:What is my name? One word.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "h": "B",
+  "label": "b4",
+  "kh": 1,
+  "prompt": "{{END}}{{U:What is my name? One word.}}{{A}}"
+ },
+ {
+  "op": "destroy",
+  "h": "B"
+ },
+ {
+  "op": "rss"
+ }
+]

@@ -1,0 +1,3 @@
+<bos><|turn>user
+Hi there, how are you today?<turn|>
+<|turn>model

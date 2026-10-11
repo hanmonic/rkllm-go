@@ -1,0 +1,9 @@
+<bos><|turn>system
+<|think|>
+You are the home controller.<|tool>declaration:get_weather{description:<|"|>Get current weather for a city<|"|>,parameters:{properties:{city:{type:<|"|>STRING<|"|>},unit:{enum:[<|"|>c<|"|>,<|"|>f<|"|>],type:<|"|>STRING<|"|>}},required:[<|"|>city<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:set_light{description:<|"|>Turn a smart light on or off, optionally set brightness<|"|>,parameters:{properties:{brightness:{type:<|"|>INTEGER<|"|>},on:{type:<|"|>BOOLEAN<|"|>},room:{type:<|"|>STRING<|"|>}},required:[<|"|>room<|"|>,<|"|>on<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:set_thermostat{description:<|"|>Set a thermostat<|"|>,parameters:{properties:{mode:{enum:[<|"|>heat<|"|>,<|"|>cool<|"|>,<|"|>auto<|"|>],type:<|"|>STRING<|"|>},temp:{type:<|"|>NUMBER<|"|>},zone:{type:<|"|>STRING<|"|>}},required:[<|"|>temp<|"|>,<|"|>mode<|"|>,<|"|>zone<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:calendar_add{description:<|"|>Add a calendar event<|"|>,parameters:{properties:{attendees:{items:{type:<|"|>STRING<|"|>},type:<|"|>ARRAY<|"|>},duration_minutes:{type:<|"|>INTEGER<|"|>},start:{description:<|"|>ISO 8601 datetime<|"|>,type:<|"|>STRING<|"|>},title:{type:<|"|>STRING<|"|>}},required:[<|"|>title<|"|>,<|"|>start<|"|>,<|"|>duration_minutes<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><turn|>
+<|turn>user
+Is it cold in Tokyo? Use fahrenheit.<turn|>
+<|turn>model
+<|channel>thought
+The user wants Tokyo weather in F.
+<channel|><|tool_call>call:get_weather{city:<|"|>Tokyo<|"|>,unit:<|"|>f<|"|>}<tool_call|><|tool_response>response:get_weather{value:<|"|>{"temp_f": 48}<|"|>}<tool_response|><|channel>thought

@@ -1,0 +1,16 @@
+[
+ {"op":"init","max_new":8,"ctx":8192},
+ {"op":"template","sys":"","pre":"","post":""},
+ {"op":"run","label":"p1","kh":0,"note":"P1 cold ~2000-token prompt","prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:100}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"run","label":"p1b","kh":0,"note":"P1 identical resend (kh=0)","prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:100}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"run","label":"p2","kh":0,"note":"P2 shares first ~50 sentences then diverges","prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:50}}{{FILLER:50:7}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"run","label":"p3","kh":0,"note":"P3 = P2 + its answer + new turn (conversation append)","prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:50}}{{FILLER:50:7}}\nHow many records are listed above? Answer briefly.}}{{A}}There are 100 records.{{END}}{{U:Which dock did record 3 go to?}}{{A}}"},
+ {"op":"run","label":"p4","kh":0,"note":"P4 totally different prompt","prompt":"{{U:{{FILLER:100:3}} Summarize.}}{{A}}"},
+ {"op":"run","label":"p5","kh":0,"note":"P5 back to P1 (only one previous prompt remembered?)","prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:100}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"note","note":"kh=1 run then kh=0 resend of the same prompt"},
+ {"op":"run","label":"p6","kh":1,"prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:100}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"run","label":"p7","kh":0,"prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:100}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"run","label":"p8","kh":0,"prompt":"{{SYS:You are a helpful assistant.}}{{U:{{FILLER:100}}\nHow many records are listed above? Answer briefly.}}{{A}}"},
+ {"op":"note","note":"kh=0 run, then kh=1 delta: does kh=1 build on the kh=0 cache?"},
+ {"op":"run","label":"p9","kh":1,"prompt":"{{END}}{{U:Which dock did record 3 go to?}}{{A}}","max_new":24}
+]

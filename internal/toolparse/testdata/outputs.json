@@ -1,0 +1,152 @@
+[
+ {
+  "id": "qwen3_4b_weather",
+  "family": "qwen3",
+  "source": "/opt/rkllm-131/res1-old-qwen3-4b.json",
+  "text": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Sydney\"}}\n</tool_call>"
+ },
+ {
+  "id": "qwen3_4b_bedroom",
+  "family": "qwen3",
+  "source": "/opt/rkllm-131/res1-old-qwen3-4b.json",
+  "text": "<tool_call>\n{\"name\": \"set_light\", \"arguments\": {\"room\": \"bedroom\", \"on\": true, \"brightness\": 30}}\n</tool_call>"
+ },
+ {
+  "id": "qwen3_0.6b_reminder",
+  "family": "qwen3",
+  "source": "/opt/rkllm-131/res1-old-qwen3-0.6b.json",
+  "text": "<tool_call>\n{\"name\": \"create_reminder\", \"arguments\": {\"text\": \"Check the oven\", \"minutes_from_now\": 15}}\n</tool_call>"
+ },
+ {
+  "id": "qwen3_4b_chat",
+  "family": "qwen3",
+  "source": "/opt/rkllm-131/res1-old-qwen3-4b.json",
+  "text": "I'm just a virtual assistant, but I'm here to help! How can I assist you today?"
+ },
+ {
+  "id": "q35_2b_living_false",
+  "family": "qwen3.5",
+  "source": "/opt/rkllm-131/result-m63-q35-2b.json",
+  "text": "<tool_call>\n<function=set_light>\n<parameter=room>\nliving room\n</parameter>\n<parameter=on>\nfalse\n</parameter>\n</function>\n</tool_call>"
+ },
+ {
+  "id": "q35_4b_bedroom_True",
+  "family": "qwen3.5",
+  "source": "/opt/rkllm-131/result-m63-q35-4b.json",
+  "text": "<tool_call>\n<function=set_light>\n<parameter=room>\nbedroom\n</parameter>\n<parameter=on>\nTrue\n</parameter>\n<parameter=brightness>\n30\n</parameter>\n</function>\n</tool_call>"
+ },
+ {
+  "id": "q35_4b_reminder",
+  "family": "qwen3.5",
+  "source": "/opt/rkllm-131/result-m63-q35-4b.json",
+  "text": "<tool_call>\n<function=create_reminder>\n<parameter=text>\nCheck the oven\n</parameter>\n<parameter=minutes_from_now>\n15\n</parameter>\n</function>\n</tool_call>"
+ },
+ {
+  "id": "q35_9b_math",
+  "family": "qwen3.5",
+  "source": "/opt/rkllm-131/result-m63-q35-9b.json",
+  "text": "**Answer: 144**\n\nThe calculation is straightforward:\n$$12 \\times 12 = 144$$\n\nThis can be verified by expanding: $12 \\times 12 = (10 + 2) \\times 12 = 120 + 24 = 144$"
+ },
+ {
+  "id": "gemma4_living_off",
+  "family": "gemma4",
+  "source": "/opt/rkllm-131/result-m63-gemma4-e2b.json",
+  "text": "call:set_light{room:living room,on:false}"
+ },
+ {
+  "id": "gemma4_bedroom",
+  "family": "gemma4",
+  "source": "/opt/rkllm-131/result-m63-gemma4-e2b.json",
+  "text": "call:set_light{brightness:30,room:bedroom}"
+ },
+ {
+  "id": "gemma4_kitchen",
+  "family": "gemma4",
+  "source": "/opt/rkllm-131/result-m63-gemma4-e2b.json",
+  "text": "call:set_light{brightness:100,on:true,room:kitchen}"
+ },
+ {
+  "id": "gemma4_restart",
+  "family": "gemma4",
+  "source": "/opt/rkllm-131/result-m63-gemma4-e2b.json",
+  "text": "call:restart_service{host:web01,service:nginx}"
+ },
+ {
+  "id": "gemma4_chat",
+  "family": "gemma4",
+  "source": "/opt/rkllm-131/result-m63-gemma4-e2b.json",
+  "text": "Hello! I am a large language model, and I'm functioning very well. Thank you for asking!\n\nHow can I help you today?"
+ },
+ {
+  "id": "gemma3n_preamble",
+  "family": "gemma3",
+  "source": "/opt/rkllm-131/res1-old-gemma3n-e4b.json",
+  "text": "Okay, I understand. \n\n```json\n{\n  \"tool_calls\": [\n    {\n      \"name\": \"get_weather\",\n      \"arguments\": {\n        \"city\": \"Sydney\"\n      }\n    }\n  ]\n}\n```"
+ },
+ {
+  "id": "gemma3n_grafana",
+  "family": "gemma3",
+  "source": "/opt/rkllm-131/res1-old-gemma3n-e4b.json",
+  "text": "Okay, I understand. Here's the tool call to restart the grafana service on lgtm:\n\n```json\n{\n  \"tool_calls\": [\n    {\n      \"name\": \"restart_service\",\n      \"arguments\": {\n        \"host\": \"lgtm\",\n        \"service\": \"grafana\"\n      },\n      \"id\": \"call_1___\"\n    }\n  ]\n}\n```\n"
+ },
+ {
+  "id": "gemma3n_bedroom",
+  "family": "gemma3",
+  "source": "/opt/rkllm-131/res1-old-gemma3n-e4b.json",
+  "text": "```json\n{\n  \"tool_calls\": [\n    {\n      \"name\": \"set_light\",\n      \"arguments\": {\n        \"room\": \"bedroom\",\n        \"on\": true,\n        \"brightness\": 30\n      },\n      \"id\": \"call_1___\"\n    }\n  ]\n}\n```"
+ },
+ {
+  "id": "gemma3_4b_tool_name",
+  "family": "gemma3",
+  "source": "/opt/rkllm-131/res1-old-gemma3-4b.json",
+  "text": "```json\n{\n  \"tool_calls\": [\n    {\n      \"name\": \"tool_name\",\n      \"arguments\": {\n        \"city\": \"Tokyo\",\n        \"unit\": \"f\"\n      },\n      \"id\": \"call_1___\"\n    }\n  ]\n}\n```"
+ },
+ {
+  "id": "gemma3_1b_broken",
+  "family": "gemma3",
+  "source": "/opt/rkllm-131/res1-old-gemma3-1b.json",
+  "text": "```json\n{\n  \"tool_calls\": [\n    {\n      \"name\": \"get_weather\",\n7,\n      \"arguments\": {\n        \"city\": \"Tokyo\"\n      }\n    }\n  ]\n}\n```"
+ },
+ {
+  "id": "llama32_3b_reminder_str",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-llama3.2-3b.json",
+  "text": "{\"name\": \"create_reminder\", \"parameters\": {\"text\": \"Check the oven\", \"minutes_from_now\": \"15\"}}"
+ },
+ {
+  "id": "llama32_3b_on_false_str",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-llama3.2-3b.json",
+  "text": "{\"name\": \"set_light\", \"parameters\": {\"room\": \"living room\", \"on\": \"false\"}}"
+ },
+ {
+  "id": "llama32_1b_list",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-llama3.2-1b.json",
+  "text": "[\n    {\n        \"name\": \"get_weather\",\n        \"parameters\": {\n            \"city\": \"Sydney\",\n            \"unit\": \"c\"\n        }\n    }\n]"
+ },
+ {
+  "id": "llama32_1b_fn_string",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-llama3.2-1b.json",
+  "text": "{\"type\": \"function\", \"function\": \"set_light\", \"parameters\": {\"room\": \"bedroom\", \"on\": \"True\", \"brightness\": \"30\"}}"
+ },
+ {
+  "id": "llama32_1b_two",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-llama3.2-1b.json",
+  "text": "{\"type\": \"function\", \"function\": \"get_weather\", \"parameters\": {\"city\": \"London\", \"unit\": \"c\"}}; {\"type\": \"function\", \"name\": \"create_reminder\", \"parameters\": {\"text\": \"Get a coffee\", \"minutes_from_now\": \"30\"}}"
+ },
+ {
+  "id": "llama32_1b_nested_fn",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-llama3.2-1b.json",
+  "text": "{\n    \"type\": \"function\",\n    \"function\": {\n        \"name\": \"set_light\",\n        \"parameters\": {\n            \"room\": \"kitchen\",\n            \"on\": true,\n            \"brightness\": 100\n        }\n    }\n}"
+ },
+ {
+  "id": "deepseek_7b_prose",
+  "family": "generic",
+  "source": "/opt/rkllm-131/res1-old-deepseek-r1-7b.json",
+  "text": "Okay, so I need to figure out what the user is asking for. They wrote, \"What's the weather in Sydney?\" That clearly relates to getting current weather information.\n\nLooking at the tools provided, there's a function called get_weather which takes a city and unit as parameters. The unit can be either 'c' for Celsius or 'f' for Fahrenheit. Since Sydney is usually reported in Celsius, I should probably use that.\n\nI don't have any other requirements here; it's straightforward to call get_weather with the appropriate parameters. There's no need to involve anything else like setting lights or restart"
+ }
+]

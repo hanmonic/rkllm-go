@@ -1,0 +1,9 @@
+<bos><|turn>system
+Be brief.<turn|>
+<|turn>user
+Name a colour.<turn|>
+<|turn>model
+Blue.<turn|>
+<|turn>user
+Another one.<turn|>
+<|turn>model

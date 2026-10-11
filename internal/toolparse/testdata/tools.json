@@ -1,0 +1,309 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "get_weather",
+   "description": "Get current weather for a city",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "city": {
+      "type": "string"
+     },
+     "unit": {
+      "type": "string",
+      "enum": [
+       "c",
+       "f"
+      ]
+     }
+    },
+    "required": [
+     "city"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "set_light",
+   "description": "Turn a smart light on or off, optionally set brightness",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "room": {
+      "type": "string"
+     },
+     "on": {
+      "type": "boolean"
+     },
+     "brightness": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+     }
+    },
+    "required": [
+     "room",
+     "on"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "restart_service",
+   "description": "Restart a systemd service on a host",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "host": {
+      "type": "string"
+     },
+     "service": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "host",
+     "service"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "create_reminder",
+   "description": "Create a reminder",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "text": {
+      "type": "string"
+     },
+     "minutes_from_now": {
+      "type": "integer"
+     }
+    },
+    "required": [
+     "text",
+     "minutes_from_now"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "search_files",
+   "description": "Search files on a host by text",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     },
+     "path": {
+      "type": "string"
+     },
+     "max_results": {
+      "type": "integer"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "send_message",
+   "description": "Send a chat message to a channel",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "channel": {
+      "type": "string",
+      "enum": [
+       "ops",
+       "general",
+       "alerts"
+      ]
+     },
+     "text": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "channel",
+     "text"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "set_thermostat",
+   "description": "Set a thermostat",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "temp": {
+      "type": "number"
+     },
+     "mode": {
+      "type": "string",
+      "enum": [
+       "heat",
+       "cool",
+       "auto"
+      ]
+     },
+     "zone": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "temp",
+     "mode",
+     "zone"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "list_containers",
+   "description": "List containers on a host, optionally filtered by status",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "host": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "running",
+       "stopped"
+      ]
+     }
+    },
+    "required": [
+     "host"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "run_backup",
+   "description": "Run a backup of a target volume",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "target": {
+      "type": "string"
+     },
+     "dry_run": {
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "target"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "calendar_add",
+   "description": "Add a calendar event",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string"
+     },
+     "start": {
+      "type": "string",
+      "description": "ISO 8601 datetime"
+     },
+     "duration_minutes": {
+      "type": "integer"
+     },
+     "attendees": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "title",
+     "start",
+     "duration_minutes"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_metric",
+   "description": "Get a metric for a host",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "host": {
+      "type": "string"
+     },
+     "metric": {
+      "type": "string",
+      "enum": [
+       "cpu",
+       "memory",
+       "disk",
+       "network"
+      ]
+     },
+     "range": {
+      "type": "string",
+      "description": "e.g. 15m, 1h, 24h"
+     }
+    },
+    "required": [
+     "host",
+     "metric"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "http_check",
+   "description": "HTTP GET a URL and return the status code",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "url"
+    ]
+   }
+  }
+ }
+]

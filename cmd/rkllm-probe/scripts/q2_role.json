@@ -1,0 +1,17 @@
+[
+ {"op":"init","max_new":64},
+ {"op":"note","note":"role mode (built-in template), no set_chat_template"},
+ {"op":"run","label":"r1","kh":1,"prompt":"My name is Zorblax and my favorite number is 7342. Reply with just OK."},
+ {"op":"run","label":"r2","kh":1,"prompt":"What is my name and my favorite number?"},
+ {"op":"run","label":"r3","kh":0,"note":"kh=0 newest message only (flask behaviour)","prompt":"What is my name?"},
+ {"op":"run","label":"r4","kh":0,"prompt":"What is my favorite number?"},
+ {"op":"note","note":"role mode with system prompt via set_chat_template + keep_system_prompt clear"},
+ {"op":"template","sys":"<|im_start|>system\nYou are a pirate. Always say Arr.<|im_end|>\n","pre":"<|im_start|>user\n","post":"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"},
+ {"op":"kv"},
+ {"op":"run","label":"r5","kh":1,"prompt":"My name is Zorblax. Reply OK."},
+ {"op":"run","label":"r6","kh":1,"prompt":"What is my name?"},
+ {"op":"clear","keep":1,"note":"full clear keep_system_prompt=1"},
+ {"op":"run","label":"r7","kh":1,"prompt":"What is my name?"},
+ {"op":"clear","keep":0,"note":"full clear keep_system_prompt=0"},
+ {"op":"run","label":"r8","kh":1,"prompt":"Who are you?"}
+]

@@ -1,0 +1,53 @@
+[
+ {
+  "op": "init",
+  "h": "A",
+  "max_new": 16
+ },
+ {
+  "op": "init",
+  "h": "C",
+  "max_new": 16,
+  "model": "q35-2b"
+ },
+ {
+  "op": "template",
+  "h": "A",
+  "sys": "",
+  "pre": "",
+  "post": ""
+ },
+ {
+  "op": "template",
+  "h": "C",
+  "sys": "",
+  "pre": "",
+  "post": ""
+ },
+ {
+  "op": "run",
+  "h": "A",
+  "label": "a1",
+  "kh": 0,
+  "prompt": "{{U:Say hi.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "h": "C",
+  "label": "c1",
+  "kh": 0,
+  "prompt": "{{U:Say hi.}}{{A}}"
+ },
+ {
+  "op": "rss"
+ },
+ {
+  "op": "init",
+  "h": "D",
+  "max_new": 16,
+  "model": "qwen3-0.6b"
+ },
+ {
+  "op": "rss"
+ }
+]

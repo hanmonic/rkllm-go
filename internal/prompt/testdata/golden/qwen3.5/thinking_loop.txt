@@ -1,0 +1,59 @@
+<|im_start|>system
+# Tools
+
+You have access to the following functions:
+
+<tools>
+{"type": "function", "function": {"name": "get_weather", "description": "Get current weather for a city", "parameters": {"type": "object", "properties": {"city": {"type": "string"}, "unit": {"type": "string", "enum": ["c", "f"]}}, "required": ["city"]}}}
+{"type": "function", "function": {"name": "set_light", "description": "Turn a smart light on or off, optionally set brightness", "parameters": {"type": "object", "properties": {"room": {"type": "string"}, "on": {"type": "boolean"}, "brightness": {"type": "integer", "minimum": 0, "maximum": 100}}, "required": ["room", "on"]}}}
+{"type": "function", "function": {"name": "set_thermostat", "description": "Set a thermostat", "parameters": {"type": "object", "properties": {"temp": {"type": "number"}, "mode": {"type": "string", "enum": ["heat", "cool", "auto"]}, "zone": {"type": "string"}}, "required": ["temp", "mode", "zone"]}}}
+{"type": "function", "function": {"name": "calendar_add", "description": "Add a calendar event", "parameters": {"type": "object", "properties": {"title": {"type": "string"}, "start": {"type": "string", "description": "ISO 8601 datetime"}, "duration_minutes": {"type": "integer"}, "attendees": {"type": "array", "items": {"type": "string"}}}, "required": ["title", "start", "duration_minutes"]}}}
+</tools>
+
+If you choose to call a function ONLY reply in the following format with NO suffix:
+
+<tool_call>
+<function=example_function_name>
+<parameter=example_parameter_1>
+value_1
+</parameter>
+<parameter=example_parameter_2>
+This is the value for the second parameter
+that can span
+multiple lines
+</parameter>
+</function>
+</tool_call>
+
+<IMPORTANT>
+Reminder:
+- Function calls MUST follow the specified format: an inner <function=...></function> block must be nested within <tool_call></tool_call> XML tags
+- Required parameters MUST be specified
+- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after
+- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls
+</IMPORTANT>
+
+You are the home controller.<|im_end|>
+<|im_start|>user
+Is it cold in Tokyo? Use fahrenheit.<|im_end|>
+<|im_start|>assistant
+<think>
+The user wants Tokyo weather in F.
+</think>
+
+<tool_call>
+<function=get_weather>
+<parameter=city>
+Tokyo
+</parameter>
+<parameter=unit>
+f
+</parameter>
+</function>
+</tool_call><|im_end|>
+<|im_start|>user
+<tool_response>
+{"temp_f": 48}
+</tool_response><|im_end|>
+<|im_start|>assistant
+<think>

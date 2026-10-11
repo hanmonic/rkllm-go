@@ -1,0 +1,23 @@
+[
+ {"op":"init","max_new":64},
+ {"op":"note","note":"Role mode, default (model-embedded) template"},
+ {"op":"run","prompt":"What is the capital of France? Answer in one word.","kh":0,"events":true},
+ {"op":"kv"},
+ {"op":"run","prompt":"a","kh":0,"max_new":4},
+ {"op":"run","prompt":"a b c d","kh":0,"max_new":4},
+ {"op":"note","note":"Raw mode: empty template"},
+ {"op":"template","sys":"","pre":"","post":""},
+ {"op":"run","prompt":"a","kh":0,"max_new":4},
+ {"op":"run","prompt":"a b c d","kh":0,"max_new":4},
+ {"op":"run","prompt":"{{U:What is the capital of France? Answer in one word.}}{{A}}","kh":0,"events":true},
+ {"op":"note","note":"Raw mode with thinking enabled flag (should be ignored)"},
+ {"op":"run","prompt":"{{U:What is the capital of France? Answer in one word.}}{{A}}","kh":0,"think":true},
+ {"op":"note","note":"Raw mode, NULL role"},
+ {"op":"run","prompt":"{{U:What is the capital of France? Answer in one word.}}{{A}}","kh":0,"role":"<nil>"},
+ {"op":"note","note":"Raw mode, role=assistant / tool"},
+ {"op":"run","prompt":"a b c d","kh":0,"max_new":4,"role":"tool"},
+ {"op":"note","note":"Token input: feed ChatML tokens im_start=151644 user=872 nl=198 + generated ids"},
+ {"op":"run","prompt":"{{U:Say the word: banana}}{{A}}","kh":0,"label":"ban"},
+ {"op":"run","tokens":[151644,872,198,151645,198,151644,77091,198],"kh":0,"max_new":16},
+ {"op":"run","tokens_from":"ban","kh":0,"max_new":8}
+]

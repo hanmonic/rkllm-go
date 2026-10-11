@@ -1,0 +1,21 @@
+[
+ {"op":"init","max_new":16},
+ {"op":"template","sys":"","pre":"","post":""},
+ {"op":"rss"},
+ {"op":"load","path":"/dev/shm/sys2k.cache"},
+ {"op":"rss"},
+ {"op":"release"},
+ {"op":"rss"},
+ {"op":"run","label":"r1","kh":0,"note":"full prompt after load+release","prompt":"{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Reference data follows. {{FILLER:100}}}}{{U:What is the secret code? Answer with the code only.}}{{A}}"},
+ {"op":"rss"},
+ {"op":"note","note":"load, run (consumes), release, run same again (LCP vs previous prompt)"},
+ {"op":"load","path":"/dev/shm/sys.cache"},
+ {"op":"run","label":"r2","kh":0,"prompt":"{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Never forget it.}}{{U:What is the secret code? Answer with the code only.}}{{A}}"},
+ {"op":"release"},
+ {"op":"run","label":"r3","kh":0,"prompt":"{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Never forget it.}}{{U:Spell it backwards.}}{{A}}"},
+ {"op":"note","note":"load a file saved from a kh=1 delta run (mid_delta.cache) then send its full text"},
+ {"op":"load","path":"/dev/shm/mid_delta.cache"},
+ {"op":"run","label":"r4","kh":0,"prompt":"{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax. Reply with just OK.}}{{A}}OK.{{END}}{{U:My favorite number is 7342. Reply with just OK.}}{{A}}OK.{{END}}{{U:My favorite color is teal. Reply with just OK.}}{{A}}"},
+ {"op":"note","note":"load nonexistent file"},
+ {"op":"load","path":"/dev/shm/nope.cache"}
+]

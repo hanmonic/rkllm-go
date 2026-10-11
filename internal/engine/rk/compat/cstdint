@@ -1,0 +1,4 @@
+/* C shim: rkllm.h includes the C++ header <cstdint>; map it to C headers. */
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>

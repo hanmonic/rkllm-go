@@ -1,0 +1,12 @@
+[
+ {"op":"init","max_new":1},
+ {"op":"template","sys":"","pre":"","post":""},
+ {"op":"run","label":"sys","kh":0,"save":"/dev/shm/sys.cache","note":"save a pure system-turn prefix","prompt":"{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Never forget it.}}"},
+ {"op":"clear","keep":0},
+ {"op":"run","label":"sys2k","kh":0,"save":"/dev/shm/sys2k.cache","note":"~2k-token system prefix","prompt":"{{SYS:You are a helpful assistant. The secret code is PINEAPPLE-42. Reference data follows. {{FILLER:100}}}}"},
+ {"op":"clear","keep":0},
+ {"op":"run","label":"c1","kh":1,"prompt":"{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax. Reply with just OK.}}{{A}}"},
+ {"op":"run","label":"c2","kh":1,"prompt":"{{END}}{{U:My favorite number is 7342. Reply with just OK.}}{{A}}"},
+ {"op":"run","label":"c3","kh":1,"max_new":1,"save":"/dev/shm/conv.cache","note":"conversation snapshot: delta closes turn and opens a new user turn header only","prompt":"{{END}}"},
+ {"op":"kv"}
+]

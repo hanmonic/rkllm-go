@@ -1,0 +1,413 @@
+{
+ "tools": [
+  {
+   "type": "function",
+   "function": {
+    "name": "get_weather",
+    "description": "Get current weather for a city",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "city": {
+       "type": "string"
+      },
+      "unit": {
+       "type": "string",
+       "enum": [
+        "c",
+        "f"
+       ]
+      }
+     },
+     "required": [
+      "city"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "set_light",
+    "description": "Turn a smart light on or off, optionally set brightness",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "room": {
+       "type": "string"
+      },
+      "on": {
+       "type": "boolean"
+      },
+      "brightness": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 100
+      }
+     },
+     "required": [
+      "room",
+      "on"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "set_thermostat",
+    "description": "Set a thermostat",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "temp": {
+       "type": "number"
+      },
+      "mode": {
+       "type": "string",
+       "enum": [
+        "heat",
+        "cool",
+        "auto"
+       ]
+      },
+      "zone": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "temp",
+      "mode",
+      "zone"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "calendar_add",
+    "description": "Add a calendar event",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "title": {
+       "type": "string"
+      },
+      "start": {
+       "type": "string",
+       "description": "ISO 8601 datetime"
+      },
+      "duration_minutes": {
+       "type": "integer"
+      },
+      "attendees": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      }
+     },
+     "required": [
+      "title",
+      "start",
+      "duration_minutes"
+     ]
+    }
+   }
+  }
+ ],
+ "cases": [
+  {
+   "name": "basic",
+   "hf": [
+    "qwen3",
+    "qwen3.5",
+    "gemma3",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant."
+    },
+    {
+     "role": "user",
+     "content": "What is 12 times 12?"
+    }
+   ]
+  },
+  {
+   "name": "no_system",
+   "hf": [
+    "qwen3",
+    "qwen3.5",
+    "gemma3",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Hi there, how are you today?"
+    }
+   ]
+  },
+  {
+   "name": "tools_single",
+   "tools": true,
+   "hf": [
+    "qwen3",
+    "qwen3.5",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a home automation agent. Use tools when appropriate."
+    },
+    {
+     "role": "user",
+     "content": "Turn off the living room light."
+    }
+   ]
+  },
+  {
+   "name": "tools_no_system",
+   "tools": true,
+   "hf": [
+    "qwen3",
+    "qwen3.5",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What's the weather in Sydney?"
+    }
+   ]
+  },
+  {
+   "name": "agent_loop_open",
+   "tools": true,
+   "hf": [
+    "qwen3.5",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are the home controller."
+    },
+    {
+     "role": "user",
+     "content": "Kitchen light on and set the living zone to 21.5 heat."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "c1",
+       "type": "function",
+       "function": {
+        "name": "set_light",
+        "arguments": "{\"room\": \"kitchen\", \"on\": true}"
+       }
+      },
+      {
+       "id": "c2",
+       "type": "function",
+       "function": {
+        "name": "set_thermostat",
+        "arguments": "{\"zone\": \"living\", \"temp\": 21.5, \"mode\": \"heat\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c1",
+     "content": "{\"ok\": true}"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c2",
+     "content": "{\"ok\": true, \"temp\": 21.5}"
+    }
+   ]
+  },
+  {
+   "name": "agent_loop_done",
+   "tools": true,
+   "hf": [
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are the home controller."
+    },
+    {
+     "role": "user",
+     "content": "Kitchen light on and set the living zone to 21.5 heat."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "c1",
+       "type": "function",
+       "function": {
+        "name": "set_light",
+        "arguments": "{\"room\": \"kitchen\", \"on\": true}"
+       }
+      },
+      {
+       "id": "c2",
+       "type": "function",
+       "function": {
+        "name": "set_thermostat",
+        "arguments": "{\"zone\": \"living\", \"temp\": 21.5, \"mode\": \"heat\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c1",
+     "content": "{\"ok\": true}"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c2",
+     "content": "{\"ok\": true, \"temp\": 21.5}"
+    },
+    {
+     "role": "assistant",
+     "content": "Kitchen light is on and the living zone is heating to 21.5C."
+    },
+    {
+     "role": "user",
+     "content": "Thanks. Add a meeting with alice and bob tomorrow at 9 for 30 minutes."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "c3",
+       "type": "function",
+       "function": {
+        "name": "calendar_add",
+        "arguments": "{\"title\": \"Meeting\", \"start\": \"2026-10-10T09:00:00\", \"duration_minutes\": 30, \"attendees\": [\"alice\", \"bob\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c3",
+     "content": "created"
+    }
+   ]
+  },
+  {
+   "name": "multi_turn_chat",
+   "hf": [
+    "gemma3",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be brief."
+    },
+    {
+     "role": "user",
+     "content": "Name a colour."
+    },
+    {
+     "role": "assistant",
+     "content": "Blue."
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    }
+   ]
+  },
+  {
+   "name": "thinking_loop",
+   "tools": true,
+   "thinking": true,
+   "hf": [
+    "qwen3",
+    "qwen3.5",
+    "gemma4"
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are the home controller."
+    },
+    {
+     "role": "user",
+     "content": "Is it cold in Tokyo? Use fahrenheit."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "reasoning_content": "The user wants Tokyo weather in F.",
+     "tool_calls": [
+      {
+       "id": "c1",
+       "type": "function",
+       "function": {
+        "name": "get_weather",
+        "arguments": "{\"city\": \"Tokyo\", \"unit\": \"f\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c1",
+     "content": "{\"temp_f\": 48}"
+    }
+   ]
+  },
+  {
+   "name": "content_and_call",
+   "tools": true,
+   "hf": [
+    "qwen3.5"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Weather in Paris?"
+    },
+    {
+     "role": "assistant",
+     "content": "Let me check that.",
+     "tool_calls": [
+      {
+       "id": "c1",
+       "type": "function",
+       "function": {
+        "name": "get_weather",
+        "arguments": "{\"city\": \"Paris\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "c1",
+     "content": "sunny, 21C"
+    }
+   ]
+  }
+ ]
+}

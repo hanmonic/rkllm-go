@@ -1,0 +1,16 @@
+[
+ {"op":"init","max_new":64},
+ {"op":"template","sys":"","pre":"","post":"","note":"raw mode"},
+ {"op":"run","label":"t1","kh":1,"note":"T1 kh=1 full prompt","prompt":"{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax and my favorite number is 7342. Reply with just OK.}}{{A}}","events":true},
+ {"op":"kv","var":"after_t1"},
+ {"op":"run","label":"t2","kh":1,"note":"T2 kh=1 delta starting with END (im_end not in cache per T1 arithmetic)","prompt":"{{END}}{{U:What is my name and my favorite number?}}{{A}}"},
+ {"op":"run","label":"t3","kh":1,"note":"T3 kh=1 delta WITHOUT END (to see what happens if im_end omitted)","prompt":"\n{{U:And what did I ask you to reply with in my first message?}}{{A}}"},
+ {"op":"kv","var":"after_t3"},
+ {"op":"run","label":"t4","kh":1,"note":"T4 kh=1: resend FULL conversation (T1 prompt) — append or prefix-match?","prompt":"{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax and my favorite number is 7342. Reply with just OK.}}{{A}}"},
+ {"op":"note","note":"Now kh=0: newest message only (official flask behaviour)"},
+ {"op":"run","label":"t5","kh":0,"prompt":"{{U:What is my name?}}{{A}}"},
+ {"op":"run","label":"t6","kh":0,"note":"kh=0 again: does t5 content persist?","prompt":"{{U:What is my name?}}{{A}}"},
+ {"op":"note","note":"kh=0 full-history prompt after kh=0 runs"},
+ {"op":"run","label":"t7","kh":0,"prompt":"{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax and my favorite number is 7342. Reply with just OK.}}{{A}}OK{{END}}{{U:What is my favorite number?}}{{A}}"},
+ {"op":"run","label":"t8","kh":0,"note":"same full prompt + T7 answer + new question: prefix reuse incl. generated tokens?","prompt":"{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax and my favorite number is 7342. Reply with just OK.}}{{A}}OK{{END}}{{U:What is my favorite number?}}{{A}}Your favorite number is 7342.{{END}}{{U:Thanks. Now say only my name.}}{{A}}"}
+]

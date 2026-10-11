@@ -1,0 +1,3 @@
+<bos><start_of_turn>user
+Hi there, how are you today?<end_of_turn>
+<start_of_turn>model

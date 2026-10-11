@@ -1,0 +1,7 @@
+[
+ {"op":"init","max_new":2},
+ {"op":"template","sys":"","pre":"","post":""},
+ {"op":"run","label":"t","kh":0,"prompt":"Q\nuser\nmodel\nsystem\nWhat is\n<|turn>user\nX<turn|>\n<|tool_call>call:get_weather{city:<|\"|>Paris<|\"|>}<tool_call|>"},
+ {"op":"clear","keep":0},
+ {"op":"run","label":"tokin","kh":0,"tokens":[105,2430,107],"note":"token input: is BOS added?"}
+]

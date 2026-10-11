@@ -1,0 +1,155 @@
+[
+ {
+  "op": "init",
+  "max_new": 8
+ },
+ {
+  "op": "template",
+  "sys": "",
+  "pre": "",
+  "post": ""
+ },
+ {
+  "op": "note",
+  "note": "E: kh=0 LCP record vs explicit range clear"
+ },
+ {
+  "op": "run",
+  "label": "e1",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:25}}\nWhich dock did record 20 go to? Answer with the number only.}}{{A}}"
+ },
+ {
+  "op": "kv",
+  "var": "e1"
+ },
+ {
+  "op": "clear",
+  "keep": 0,
+  "start": 200,
+  "end_var": "e1",
+  "note": "range clear w/o pause (kh=0 finished)"
+ },
+ {
+  "op": "kv"
+ },
+ {
+  "op": "run",
+  "label": "e2",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:25}}\nWhich dock did record 20 go to? Answer with the number only.}}{{A}}"
+ },
+ {
+  "op": "note",
+  "note": "E2: same but with pause + range clear (documented condition)"
+ },
+ {
+  "op": "run",
+  "label": "e3",
+  "kh": 0,
+  "pause": 1,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:25}}\nWhich dock did record 20 go to? Answer with the number only.}}{{A}}"
+ },
+ {
+  "op": "kv",
+  "var": "e3"
+ },
+ {
+  "op": "clear",
+  "keep": 0,
+  "start": 200,
+  "end_var": "e3"
+ },
+ {
+  "op": "kv"
+ },
+ {
+  "op": "run",
+  "label": "e4",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:25}}\nWhich dock did record 20 go to? Answer with the number only.}}{{A}}"
+ },
+ {
+  "op": "note",
+  "note": "E3: full clear then same prompt (record reset?)"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "e5",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:25}}\nWhich dock did record 20 go to? Answer with the number only.}}{{A}}"
+ },
+ {
+  "op": "note",
+  "note": "F: kh=1 clear-range then kh=1 resend from cut point (manual truncation in append mode)"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "f1",
+  "kh": 1,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax. Reply OK.}}{{A}}"
+ },
+ {
+  "op": "kv",
+  "var": "f1"
+ },
+ {
+  "op": "run",
+  "label": "f2",
+  "kh": 1,
+  "prompt": "{{END}}{{U:Actually my name is Quux. Reply OK.}}{{A}}"
+ },
+ {
+  "op": "kv",
+  "var": "f2"
+ },
+ {
+  "op": "clear",
+  "keep": 0,
+  "start_var": "f1",
+  "end_var": "f2"
+ },
+ {
+  "op": "run",
+  "label": "f3",
+  "kh": 1,
+  "prompt": "{{END}}{{U:What is my name? One word.}}{{A}}"
+ },
+ {
+  "op": "note",
+  "note": "G: kh=1 paused (pause=3), then range clear while paused"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "g1",
+  "kh": 1,
+  "pause": 3,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:My name is Zorblax. Write a long poem about my name.}}{{A}}",
+  "max_new": 48
+ },
+ {
+  "op": "kv",
+  "var": "g1"
+ },
+ {
+  "op": "clear",
+  "keep": 0,
+  "start": 20,
+  "end_var": "g1"
+ },
+ {
+  "op": "kv"
+ }
+]

@@ -1,0 +1,136 @@
+[
+ {
+  "op": "init",
+  "max_new": 64,
+  "ctx": 8192
+ },
+ {
+  "op": "template",
+  "sys": "",
+  "pre": "",
+  "post": ""
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "cold24",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:24}}\nWrite a long story about record 1.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "cold96",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:96}}\nWrite a long story about record 1.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "cold290",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:290}}\nWrite a long story about record 1.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "note",
+  "note": "warm kh=0: P6000 already the last prompt; send P6000+200-token delta"
+ },
+ {
+  "op": "run",
+  "label": "warm_kh0",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:290}}\nWrite a long story about record 1.}}{{A}}Okay.{{END}}{{U:{{FILLER:10:9}}\nWrite a long story about record 9003.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "note",
+  "note": "cold 6200: same full prompt from empty cache"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "cold6200",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:290}}\nWrite a long story about record 1.}}{{A}}Okay.{{END}}{{U:{{FILLER:10:9}}\nWrite a long story about record 9003.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "note",
+  "note": "kh=1: P6000 then 200-token delta"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "kh1_base",
+  "kh": 1,
+  "max_new": 1,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:290}}\nWrite a long story about record 1.}}{{A}}"
+ },
+ {
+  "op": "run",
+  "label": "warm_kh1",
+  "kh": 1,
+  "prompt": "{{END}}{{U:{{FILLER:10:9}}\nWrite a long story about record 9003.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "note",
+  "note": "prompt-cache file path: save P6000, then clear+load+full prompt"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "save6000",
+  "kh": 0,
+  "max_new": 1,
+  "save": "/dev/shm/p6000.cache",
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:290}}\nWrite a long story about record 1.}}{{A}}"
+ },
+ {
+  "op": "clear",
+  "keep": 0
+ },
+ {
+  "op": "run",
+  "label": "other",
+  "kh": 0,
+  "max_new": 1,
+  "prompt": "{{U:Hi}}{{A}}"
+ },
+ {
+  "op": "load",
+  "path": "/dev/shm/p6000.cache"
+ },
+ {
+  "op": "run",
+  "label": "loaded_warm",
+  "kh": 0,
+  "prompt": "{{SYS:You are a helpful assistant.}}{{U:{{FILLER:290}}\nWrite a long story about record 1.}}{{A}}Okay.{{END}}{{U:{{FILLER:10:9}}\nWrite a long story about record 9003.}}{{A}}",
+  "show": 80
+ },
+ {
+  "op": "rm",
+  "path": "/dev/shm/p6000.cache"
+ }
+]
